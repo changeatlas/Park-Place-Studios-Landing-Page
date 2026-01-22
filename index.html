@@ -6,7 +6,7 @@
   ---------------------------------------------------------
   SEO notes:
   - Update meta title/description + OG image once you have a real social image.
-  - Add a real favicon at /favicon.ico (or update link).
+  - Favicon is embedded as an SVG data URI (self-contained). Swap later if desired.
 
   Deploy notes (Vercel static):
   - Repo structure: put THIS file at the repo root named index.html
@@ -32,29 +32,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Park Place Studios — Print + Design That Ships Fast (No Minimums)</title>
-  <meta name="description" content="High-impact marketing materials with quick turnaround: trade show kits, flyers, stickers, mailers, packaging, signage, and design. No minimums. Get a quote fast." />
+  <meta name="description" content="Quick-turn printing and design for real marketing needs: trade show kits, flyers, stickers, mailers, packaging, signage. No minimums. Email for a quote or to schedule a visit." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Park Place Studios — Print + Design That Ships Fast (No Minimums)" />
-  <meta property="og:description" content="Trade show kits, flyers, stickers, mailers, packaging, signage, and design—built to ship fast. No minimums. Get a quote fast." />
+  <meta property="og:description" content="Trade show kits, flyers, stickers, mailers, packaging, signage, and design—built to ship fast. No minimums. Contact us for a quote." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com" />
-  <!-- Replace with a real image later -->
+  <!-- Self-contained placeholder (swap later) -->
   <meta property="og:image" content="https://example.com/og-image.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Park Place Studios — Print + Design That Ships Fast (No Minimums)" />
-  <meta name="twitter:description" content="High-impact marketing materials with quick turnaround. No minimums. Get a quote fast." />
+  <meta name="twitter:description" content="Quick-turn printing and design for trade shows, launches, mailers, packaging. No minimums." />
   <meta name="twitter:image" content="https://example.com/og-image.png" />
 
-  <!-- Favicon (placeholder) -->
-  <link rel="icon" href="/favicon.ico" />
+  <!-- Self-contained favicon (SVG data URI) -->
+  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0" y1="0" x2="1" y2="1"%3E%3Cstop offset="0" stop-color="%236366F1"/%3E%3Cstop offset="0.55" stop-color="%23EC4899"/%3E%3Cstop offset="1" stop-color="%2322C55E"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="64" height="64" rx="16" fill="%230B1220"/%3E%3Cpath d="M18 19h28a6 6 0 0 1 6 6v10h-8V25a2 2 0 0 0-2-2H22a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16v8H18a6 6 0 0 1-6-6V25a6 6 0 0 1 6-6Z" fill="url(%23g)"/%3E%3Crect x="38" y="33" width="14" height="20" rx="4" fill="%23FFFFFF" opacity="0.1"/%3E%3Crect x="41" y="37" width="8" height="12" rx="3" fill="%23FFFFFF" opacity="0.16"/%3E%3C/svg%3E' />
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Tailwind config (kept light, no build tools)
     tailwind.config = {
       theme: {
         extend: {
@@ -71,14 +70,14 @@
   </script>
 
   <style>
-    /* Tiny enhancements for polish + accessibility */
     :focus-visible { outline: 2px solid rgba(99, 102, 241, .9); outline-offset: 3px; border-radius: 10px; }
     html { scroll-behavior: smooth; }
+
     .noise {
       background-image:
-        radial-gradient(circle at 20% 10%, rgba(99,102,241,.30), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(236,72,153,.20), transparent 40%),
-        radial-gradient(circle at 60% 90%, rgba(34,197,94,.16), transparent 45%),
+        radial-gradient(circle at 18% 12%, rgba(99,102,241,.30), transparent 35%),
+        radial-gradient(circle at 82% 20%, rgba(236,72,153,.20), transparent 40%),
+        radial-gradient(circle at 62% 92%, rgba(34,197,94,.16), transparent 45%),
         linear-gradient(to bottom, rgba(15,23,42,1), rgba(2,6,23,1));
     }
     .gridlines {
@@ -98,20 +97,182 @@
     Skip to content
   </a>
 
+  <!-- Inline “stock” SVG assets (single-file). Replace any of these with real <img src="..."> later. -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="pps-brand" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#6366F1"/>
+        <stop offset="0.55" stop-color="#EC4899"/>
+        <stop offset="1" stop-color="#22C55E"/>
+      </linearGradient>
+
+      <!-- Logo mark (used in nav/footer) -->
+      <symbol id="pps-logo-mark" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="16" fill="#0B1220"/>
+        <path d="M18 19h28a6 6 0 0 1 6 6v10h-8V25a2 2 0 0 0-2-2H22a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16v8H18a6 6 0 0 1-6-6V25a6 6 0 0 1 6-6Z" fill="url(#pps-brand)"/>
+        <rect x="38" y="33" width="14" height="20" rx="4" fill="#FFFFFF" opacity="0.10"/>
+        <rect x="41" y="37" width="8" height="12" rx="3" fill="#FFFFFF" opacity="0.16"/>
+        <path d="M23 31h13" stroke="#FFFFFF" opacity="0.22" stroke-width="3" stroke-linecap="round"/>
+        <path d="M23 38h10" stroke="#FFFFFF" opacity="0.18" stroke-width="3" stroke-linecap="round"/>
+      </symbol>
+
+      <!-- “Stock” hero image: production desk scene -->
+      <symbol id="pps-stock-hero" viewBox="0 0 960 720">
+        <defs>
+          <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0B1220"/>
+            <stop offset="0.55" stop-color="#121A2F"/>
+            <stop offset="1" stop-color="#071022"/>
+          </linearGradient>
+          <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#6366F1" stop-opacity="0.28"/>
+            <stop offset="0.55" stop-color="#EC4899" stop-opacity="0.18"/>
+            <stop offset="1" stop-color="#22C55E" stop-opacity="0.16"/>
+          </linearGradient>
+          <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="18" result="b"/>
+            <feColorMatrix in="b" type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 0.35 0" result="g"/>
+            <feMerge>
+              <feMergeNode in="g"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <rect width="960" height="720" rx="40" fill="url(#hbg)"/>
+        <g opacity="0.9">
+          <path d="M80 110h800" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+          <path d="M80 190h800" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+          <path d="M80 270h800" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+          <path d="M80 350h800" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+          <path d="M80 430h800" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+          <path d="M80 510h800" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+        </g>
+
+        <!-- Desk panel -->
+        <rect x="70" y="90" width="820" height="540" rx="34" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="92" y="112" width="776" height="496" rx="28" fill="url(#card)" stroke="#FFFFFF" stroke-opacity="0.10"/>
+
+        <!-- “Printed pieces” -->
+        <g filter="url(#softGlow)">
+          <!-- Poster -->
+          <rect x="140" y="160" width="270" height="360" rx="24" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.12"/>
+          <rect x="165" y="190" width="220" height="44" rx="18" fill="url(#pps-brand)" opacity="0.85"/>
+          <rect x="165" y="255" width="190" height="20" rx="10" fill="#FFFFFF" opacity="0.14"/>
+          <rect x="165" y="290" width="220" height="20" rx="10" fill="#FFFFFF" opacity="0.12"/>
+          <rect x="165" y="325" width="160" height="20" rx="10" fill="#FFFFFF" opacity="0.12"/>
+          <rect x="165" y="380" width="120" height="36" rx="18" fill="#FFFFFF" opacity="0.10"/>
+          <rect x="293" y="380" width="92" height="36" rx="18" fill="#FFFFFF" opacity="0.08"/>
+
+          <!-- Sticker sheet -->
+          <rect x="460" y="190" width="180" height="230" rx="24" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.12"/>
+          <circle cx="510" cy="250" r="28" fill="#22C55E" opacity="0.70"/>
+          <circle cx="590" cy="250" r="28" fill="#6366F1" opacity="0.55"/>
+          <rect x="490" y="305" width="120" height="34" rx="17" fill="#EC4899" opacity="0.40"/>
+          <rect x="490" y="355" width="140" height="18" rx="9" fill="#FFFFFF" opacity="0.10"/>
+
+          <!-- Mailer -->
+          <rect x="670" y="250" width="190" height="150" rx="26" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.12"/>
+          <path d="M695 275 L765 325 L835 275" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="705" y="345" width="150" height="24" rx="12" fill="url(#pps-brand)" opacity="0.55"/>
+        </g>
+
+        <!-- Small captions -->
+        <g fill="#FFFFFF" opacity="0.72" font-family="ui-sans-serif, system-ui" font-size="18">
+          <text x="140" y="560">Trade show poster</text>
+          <text x="460" y="450">Sticker sheet</text>
+          <text x="670" y="430">Mailer</text>
+        </g>
+      </symbol>
+
+      <!-- “Stock” product images for cards -->
+      <symbol id="pps-stock-flyer" viewBox="0 0 600 480">
+        <rect width="600" height="480" rx="32" fill="#0B1220"/>
+        <rect x="44" y="40" width="512" height="400" rx="28" fill="#0E172A" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="78" y="78" width="444" height="72" rx="26" fill="url(#pps-brand)" opacity="0.85"/>
+        <rect x="78" y="172" width="330" height="26" rx="13" fill="#FFFFFF" opacity="0.13"/>
+        <rect x="78" y="214" width="410" height="26" rx="13" fill="#FFFFFF" opacity="0.11"/>
+        <rect x="78" y="256" width="290" height="26" rx="13" fill="#FFFFFF" opacity="0.11"/>
+        <rect x="78" y="320" width="170" height="54" rx="27" fill="#FFFFFF" opacity="0.10"/>
+        <rect x="268" y="320" width="140" height="54" rx="27" fill="#FFFFFF" opacity="0.08"/>
+      </symbol>
+
+      <symbol id="pps-stock-stickers" viewBox="0 0 600 480">
+        <rect width="600" height="480" rx="32" fill="#0B1220"/>
+        <rect x="44" y="40" width="512" height="400" rx="28" fill="#0E172A" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <g>
+          <circle cx="210" cy="185" r="62" fill="#22C55E" opacity="0.65"/>
+          <circle cx="390" cy="185" r="62" fill="#6366F1" opacity="0.55"/>
+          <rect x="140" y="290" width="320" height="72" rx="36" fill="#EC4899" opacity="0.38"/>
+          <rect x="140" y="380" width="210" height="24" rx="12" fill="#FFFFFF" opacity="0.10"/>
+        </g>
+      </symbol>
+
+      <symbol id="pps-stock-mailer" viewBox="0 0 600 480">
+        <rect width="600" height="480" rx="32" fill="#0B1220"/>
+        <rect x="44" y="76" width="512" height="328" rx="34" fill="#0E172A" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <path d="M88 130 L300 270 L512 130" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="120" y="302" width="360" height="54" rx="27" fill="url(#pps-brand)" opacity="0.50"/>
+        <rect x="120" y="372" width="220" height="22" rx="11" fill="#FFFFFF" opacity="0.10"/>
+      </symbol>
+
+      <symbol id="pps-stock-packaging" viewBox="0 0 600 480">
+        <rect width="600" height="480" rx="32" fill="#0B1220"/>
+        <rect x="70" y="110" width="240" height="260" rx="28" fill="#0E172A" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="320" y="140" width="210" height="230" rx="28" fill="#0E172A" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="95" y="140" width="190" height="56" rx="20" fill="url(#pps-brand)" opacity="0.75"/>
+        <rect x="95" y="220" width="160" height="24" rx="12" fill="#FFFFFF" opacity="0.12"/>
+        <rect x="95" y="260" width="190" height="24" rx="12" fill="#FFFFFF" opacity="0.10"/>
+        <rect x="95" y="320" width="120" height="36" rx="18" fill="#FFFFFF" opacity="0.08"/>
+
+        <rect x="342" y="168" width="166" height="40" rx="16" fill="#22C55E" opacity="0.30"/>
+        <rect x="342" y="224" width="140" height="18" rx="9" fill="#FFFFFF" opacity="0.10"/>
+        <rect x="342" y="254" width="166" height="18" rx="9" fill="#FFFFFF" opacity="0.08"/>
+        <rect x="342" y="308" width="110" height="42" rx="21" fill="#6366F1" opacity="0.22"/>
+      </symbol>
+
+      <!-- Case study “stock” image -->
+      <symbol id="pps-stock-case" viewBox="0 0 960 520">
+        <rect width="960" height="520" rx="36" fill="#0B1220"/>
+        <rect x="40" y="48" width="880" height="424" rx="30" fill="#0E172A" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="80" y="92" width="360" height="330" rx="24" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="110" y="124" width="300" height="64" rx="22" fill="url(#pps-brand)" opacity="0.75"/>
+        <rect x="110" y="212" width="240" height="20" rx="10" fill="#FFFFFF" opacity="0.12"/>
+        <rect x="110" y="248" width="280" height="20" rx="10" fill="#FFFFFF" opacity="0.10"/>
+        <rect x="110" y="284" width="210" height="20" rx="10" fill="#FFFFFF" opacity="0.10"/>
+        <rect x="110" y="338" width="150" height="44" rx="22" fill="#FFFFFF" opacity="0.08"/>
+
+        <rect x="480" y="120" width="400" height="100" rx="26" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <rect x="520" y="150" width="320" height="40" rx="20" fill="#22C55E" opacity="0.22"/>
+
+        <rect x="480" y="250" width="250" height="172" rx="26" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <circle cx="555" cy="320" r="44" fill="#6366F1" opacity="0.28"/>
+        <rect x="520" y="378" width="170" height="18" rx="9" fill="#FFFFFF" opacity="0.10"/>
+
+        <rect x="750" y="250" width="130" height="172" rx="26" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10"/>
+        <path d="M772 278 L815 320 L858 278" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="772" y="348" width="100" height="22" rx="11" fill="#EC4899" opacity="0.22"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <!-- Sticky Nav -->
   <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center justify-between">
         <a href="#top" class="flex items-center gap-3">
-          <!-- Simple SVG mark (easy swap) -->
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
-            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="text-indigo-300">
-              <path fill="currentColor" d="M7 3h10a2 2 0 0 1 2 2v6h-2V5H7v14h6v2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm9 10h6v8h-6v-8Zm2 2v4h2v-4h-2Z"/>
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15 overflow-hidden">
+            <svg viewBox="0 0 64 64" class="h-8 w-8" aria-hidden="true">
+              <use href="#pps-logo-mark"></use>
             </svg>
           </span>
           <div class="leading-tight">
             <div class="font-semibold tracking-tight">Park Place Studios</div>
-            <div class="text-xs text-slate-300">Print + design, shipped fast</div>
+            <div class="text-xs text-slate-300">Quick-turn print + design • No minimums</div>
           </div>
         </a>
 
@@ -123,7 +284,7 @@
         </nav>
 
         <div class="flex items-center gap-2">
-          <a href="#contact" class="hidden sm:inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/15 ring-1 ring-white/15">
+          <a href="#audit" class="hidden sm:inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/15 ring-1 ring-white/15">
             Get a free audit
           </a>
           <a href="#contact" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-indigo-500 hover:bg-indigo-400 text-slate-950 shadow-glow">
@@ -144,15 +305,15 @@
           <div class="lg:col-span-7">
             <p class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/15 px-3 py-1 text-xs text-slate-200">
               <span class="h-1.5 w-1.5 rounded-full bg-emerald-300"></span>
-              Quick-turn print + design • No minimums • Built for launch weeks
+              Print + design for launches, events, and packaging — without minimums
             </p>
 
             <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">
-              Marketing materials that look premium <span class="text-indigo-300">and ship on schedule.</span>
+              Marketing materials that look premium <span class="text-indigo-300">and hit your deadline.</span>
             </h1>
 
             <p class="mt-5 text-lg sm:text-xl text-slate-200 max-w-2xl">
-              Trade shows, flyers, stickers, mailers, packaging, signage, and design—produced for teams who can’t afford reprints, delays, or “close enough.”
+              Trade show kits, flyers, stickers, mailers, packaging, signage, and design—produced for teams who can’t afford reprints, delays, or dull creative.
             </p>
 
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
@@ -174,8 +335,8 @@
                 <div class="mt-1 text-slate-300">Rapid proofing + quick turnaround for last-minute campaigns.</div>
               </li>
               <li class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
-                <div class="font-semibold text-white">Better conversion</div>
-                <div class="mt-1 text-slate-300">Design that’s built to be read at 6 feet and remembered.</div>
+                <div class="font-semibold text-white">No minimums</div>
+                <div class="mt-1 text-slate-300">Order exactly what you need for an event, drop, or test run.</div>
               </li>
             </ul>
 
@@ -184,7 +345,7 @@
             </div>
           </div>
 
-          <!-- Visual panel (no external images; swap later) -->
+          <!-- “Stock image” hero panel -->
           <div class="lg:col-span-5">
             <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 shadow-soft overflow-hidden">
               <div class="p-5 border-b border-white/10 flex items-center justify-between">
@@ -193,170 +354,31 @@
                   <span class="h-2.5 w-2.5 rounded-full bg-amber-300/90"></span>
                   <span class="h-2.5 w-2.5 rounded-full bg-emerald-300/90"></span>
                 </div>
-                <div class="text-xs text-slate-300">Production preview</div>
+                <div class="text-xs text-slate-300">Studio preview (stock)</div>
               </div>
 
               <div class="p-5">
-                <div class="rounded-2xl bg-gradient-to-br from-indigo-500/25 via-fuchsia-500/15 to-emerald-500/15 ring-1 ring-white/10 p-5">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <div class="text-xs text-slate-200">Example kit</div>
-                      <div class="mt-1 text-lg font-semibold">Trade show launch bundle</div>
-                      <div class="mt-2 text-sm text-slate-200">
-                        Stickers • Flyers • Tabletop sign • Product cards • QR mailer
-                      </div>
-                    </div>
-                    <span class="inline-flex items-center rounded-full bg-white/10 ring-1 ring-white/15 px-2.5 py-1 text-xs text-slate-100">
-                      3–5 day turnaround*
-                    </span>
-                  </div>
-
-                  <div class="mt-5 grid grid-cols-3 gap-3">
-                    <!-- SVG placeholders (easy swap with images later) -->
-                    <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-3">
-                      <svg viewBox="0 0 140 120" class="w-full h-auto" role="img" aria-label="Flyer placeholder">
-                        <defs>
-                          <linearGradient id="g1" x1="0" x2="1">
-                            <stop offset="0" stop-color="rgba(99,102,241,.75)"/>
-                            <stop offset="1" stop-color="rgba(236,72,153,.55)"/>
-                          </linearGradient>
-                        </defs>
-                        <rect x="12" y="10" width="116" height="100" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>
-                        <rect x="24" y="24" width="92" height="18" rx="8" fill="url(#g1)"/>
-                        <rect x="24" y="52" width="72" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-                        <rect x="24" y="68" width="84" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-                        <rect x="24" y="84" width="62" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-                      </svg>
-                      <div class="mt-2 text-xs text-slate-300">Flyer</div>
-                    </div>
-
-                    <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-3">
-                      <svg viewBox="0 0 140 120" class="w-full h-auto" role="img" aria-label="Sticker sheet placeholder">
-                        <defs>
-                          <linearGradient id="g2" x1="0" x2="1">
-                            <stop offset="0" stop-color="rgba(34,197,94,.75)"/>
-                            <stop offset="1" stop-color="rgba(99,102,241,.55)"/>
-                          </linearGradient>
-                        </defs>
-                        <rect x="12" y="10" width="116" height="100" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>
-                        <circle cx="45" cy="48" r="16" fill="url(#g2)"/>
-                        <circle cx="90" cy="48" r="16" fill="rgba(255,255,255,.10)"/>
-                        <rect x="28" y="76" width="84" height="18" rx="9" fill="rgba(236,72,153,.35)"/>
-                      </svg>
-                      <div class="mt-2 text-xs text-slate-300">Stickers</div>
-                    </div>
-
-                    <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-3">
-                      <svg viewBox="0 0 140 120" class="w-full h-auto" role="img" aria-label="Mailer placeholder">
-                        <defs>
-                          <linearGradient id="g3" x1="0" x2="1">
-                            <stop offset="0" stop-color="rgba(251,191,36,.75)"/>
-                            <stop offset="1" stop-color="rgba(236,72,153,.55)"/>
-                          </linearGradient>
-                        </defs>
-                        <rect x="12" y="18" width="116" height="84" rx="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>
-                        <path d="M22 28 L70 62 L118 28" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="6" stroke-linecap="round" />
-                        <rect x="26" y="76" width="88" height="12" rx="6" fill="url(#g3)"/>
-                      </svg>
-                      <div class="mt-2 text-xs text-slate-300">Mailer</div>
-                    </div>
-                  </div>
-
-                  <p class="mt-4 text-xs text-slate-300">
-                    *Turnaround depends on specs and proof approval. We’ll confirm timelines before production.
-                  </p>
+                <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                  <svg viewBox="0 0 960 720" class="w-full h-auto" role="img" aria-label="Stock illustration: print production desk with poster, sticker sheet, and mailer">
+                    <use href="#pps-stock-hero"></use>
+                  </svg>
                 </div>
 
                 <div class="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
                   <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
-                    <div class="font-semibold">No minimums</div>
-                    <div class="mt-1 text-slate-300">Order exactly what you need for a launch, event, or test run.</div>
+                    <div class="font-semibold">Design that prints clean</div>
+                    <div class="mt-1 text-slate-300">We design with real production constraints—so the final looks like the proof.</div>
                   </div>
                   <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
-                    <div class="font-semibold">Color confidence</div>
-                    <div class="mt-1 text-slate-300">Proof-first workflow so what you approve is what you get.</div>
+                    <div class="font-semibold">Specs handled</div>
+                    <div class="mt-1 text-slate-300">Stocks, finishes, sizes—get guidance without a long email chain.</div>
                   </div>
                 </div>
 
+                <p class="mt-4 text-xs text-slate-400">
+                  Easy swap later: replace any inline SVG with a real &lt;img&gt; and keep the same container sizing.
+                </p>
               </div>
-            </div>
-
-            <p class="mt-3 text-xs text-slate-400">
-              Want to swap these placeholders for real photos later? Replace the SVG blocks with &lt;img&gt; tags—everything is already sized and responsive.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Social Proof -->
-    <section class="py-14 sm:py-16 border-t border-white/10 bg-slate-950">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Proof you can feel before you commit</h2>
-            <p class="mt-2 text-slate-300 max-w-2xl">
-              We’re built for real-world marketing: deadlines, shipping windows, and materials that must hold up under lights, hands, and travel.
-            </p>
-          </div>
-          <a href="#work" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/15 ring-1 ring-white/15">
-            See examples
-          </a>
-        </div>
-
-        <div class="mt-8 grid lg:grid-cols-12 gap-6 items-stretch">
-          <!-- Logo row (placeholder) -->
-          <div class="lg:col-span-7 rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <div class="flex items-center justify-between gap-4">
-              <div class="text-sm font-semibold">Client logos</div>
-              <div class="text-xs text-slate-400">Placeholder — replace with real logos</div>
-            </div>
-            <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-4 flex items-center justify-center text-xs text-slate-300">LOGO</div>
-              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-4 flex items-center justify-center text-xs text-slate-300">LOGO</div>
-              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-4 flex items-center justify-center text-xs text-slate-300">LOGO</div>
-              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-4 flex items-center justify-center text-xs text-slate-300">LOGO</div>
-            </div>
-
-            <div class="mt-6 grid sm:grid-cols-3 gap-3">
-              <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
-                <div class="text-2xl font-semibold">48h</div>
-                <div class="mt-1 text-sm text-slate-300">Typical proof turnaround (placeholder)</div>
-              </div>
-              <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
-                <div class="text-2xl font-semibold">0</div>
-                <div class="mt-1 text-sm text-slate-300">Minimum order quantity</div>
-              </div>
-              <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
-                <div class="text-2xl font-semibold">6ft</div>
-                <div class="mt-1 text-sm text-slate-300">Legibility-first design for booths & signage</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial (placeholder) -->
-          <div class="lg:col-span-5 rounded-3xl bg-gradient-to-br from-white/8 to-white/4 ring-1 ring-white/10 p-6">
-            <div class="flex items-center justify-between gap-4">
-              <div class="text-sm font-semibold">What teams say</div>
-              <div class="text-xs text-slate-400">Placeholder — add a real quote</div>
-            </div>
-
-            <blockquote class="mt-5">
-              <p class="text-lg leading-relaxed text-slate-100">
-                “We had a trade show in 9 days. Park Place Studios tightened our booth messaging, caught file issues before print, and delivered materials that looked expensive.”
-              </p>
-              <footer class="mt-4 text-sm text-slate-300">
-                — Marketing Lead, B2B Brand <span class="text-slate-500">(placeholder)</span>
-              </footer>
-            </blockquote>
-
-            <div class="mt-6 rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-4">
-              <div class="text-sm font-semibold">Fast quote → fast ship</div>
-              <p class="mt-1 text-sm text-slate-300">
-                Send specs (or a photo of what you want). We’ll reply with options, pricing, and timeline.
-              </p>
-              <a class="mt-3 inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-indigo-500 hover:bg-indigo-400 text-slate-950"
-                 href="#contact">Get a quote</a>
             </div>
           </div>
         </div>
@@ -382,11 +404,6 @@
             <p class="mt-2 text-sm text-slate-300">
               Booth-ready bundles: tabletop signs, product one-pagers, handouts, stickers, QR cards—matched to your pitch and sized for quick scanning.
             </p>
-            <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Messaging hierarchy for 6–10 ft viewing</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Print-safe files + preflight included</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Rush-friendly turnaround</li>
-            </ul>
           </div>
 
           <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
@@ -395,13 +412,13 @@
               <span class="text-xs rounded-full bg-white/10 ring-1 ring-white/15 px-2 py-1 text-slate-200">Launch-ready</span>
             </div>
             <p class="mt-2 text-sm text-slate-300">
-              Clear, readable layouts that land the message fast. Perfect for events, retail, street teams, and conference environments.
+              Clear, readable layouts that land the message fast. Perfect for events, retail, street teams, and conferences.
             </p>
-            <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Designed for “glance” comprehension</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Stock + finish guidance</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Consistent brand system</li>
-            </ul>
+            <div class="mt-4 rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+              <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: flyer layout">
+                <use href="#pps-stock-flyer"></use>
+              </svg>
+            </div>
           </div>
 
           <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
@@ -410,13 +427,13 @@
               <span class="text-xs rounded-full bg-white/10 ring-1 ring-white/15 px-2 py-1 text-slate-200">No minimums</span>
             </div>
             <p class="mt-2 text-sm text-slate-300">
-              Brand-forward stickers and labels for packaging, promos, and product drops. Order tiny batches, iterate, and scale when it hits.
+              Brand-forward stickers and labels for packaging, promos, and drops. Order tiny batches, iterate, then scale.
             </p>
-            <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Durable materials + finish options</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Die-cut / kiss-cut ready</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Color-managed proofs</li>
-            </ul>
+            <div class="mt-4 rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+              <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: sticker sheet">
+                <use href="#pps-stock-stickers"></use>
+              </svg>
+            </div>
           </div>
 
           <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
@@ -427,11 +444,11 @@
             <p class="mt-2 text-sm text-slate-300">
               Mailers and package inserts that drive action: strong offers, tight copy, and QR/URL flows that measure results.
             </p>
-            <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Offer + CTA refinement</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Scannable layouts</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Print specs handled</li>
-            </ul>
+            <div class="mt-4 rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+              <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: mailer envelope">
+                <use href="#pps-stock-mailer"></use>
+              </svg>
+            </div>
           </div>
 
           <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
@@ -442,26 +459,21 @@
             <p class="mt-2 text-sm text-slate-300">
               Packaging assets that communicate value instantly—materials, typography, and structure that feels premium without being fragile.
             </p>
-            <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> “Unboxing” clarity + brand story</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Small-batch test runs</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> File prep + dieline support</li>
-            </ul>
+            <div class="mt-4 rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+              <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: packaging and product cards">
+                <use href="#pps-stock-packaging"></use>
+              </svg>
+            </div>
           </div>
 
           <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
             <div class="flex items-start justify-between gap-4">
               <div class="text-base font-semibold">Design support</div>
-              <span class="text-xs rounded-full bg-white/10 ring-1 ring-white/15 px-2 py-1 text-slate-200">Senior-led</span>
+              <span class="text-xs rounded-full bg-white/10 ring-1 ring-white/15 px-2 py-1 text-slate-200">Production-aware</span>
             </div>
             <p class="mt-2 text-sm text-slate-300">
-              Need files made, fixed, or elevated? We design with production constraints in mind so your print actually matches the vision.
+              Need files made, fixed, or elevated? We design for print constraints so the final output matches the intent—clean, readable, and on-brand.
             </p>
-            <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Cleanup + production-ready exports</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Brand refresh for print</li>
-              <li class="flex gap-2"><span class="text-emerald-300">✓</span> Fast iterations</li>
-            </ul>
           </div>
         </div>
 
@@ -469,7 +481,7 @@
           <div>
             <div class="text-sm font-semibold">Not sure what you need?</div>
             <p class="mt-1 text-sm text-slate-200">
-              Send your goal (trade show, launch, promo, packaging). We’ll recommend the right bundle and the best materials for your timeline.
+              Email your goal (trade show, launch, promo, packaging). We’ll recommend the right bundle and materials for your timeline.
             </p>
           </div>
           <a href="#contact" class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold bg-indigo-500 hover:bg-indigo-400 text-slate-950">
@@ -483,7 +495,7 @@
     <section id="process" class="py-14 sm:py-16 border-t border-white/10 bg-slate-950">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="max-w-2xl">
-          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">A production workflow that prevents reprints</h2>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">A workflow that prevents reprints</h2>
           <p class="mt-2 text-slate-300">
             You’ll always know what’s happening and what’s next. Clear proofs, clear timelines, and print that matches the approval.
           </p>
@@ -497,8 +509,8 @@
           </div>
           <div class="lg:col-span-1 rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
             <div class="text-xs text-slate-400">Step 2</div>
-            <div class="mt-1 font-semibold">Specs + quote</div>
-            <p class="mt-2 text-sm text-slate-300">We recommend materials, sizes, finishes, and send a clear quote + timeline.</p>
+            <div class="mt-1 font-semibold">Specs + options</div>
+            <p class="mt-2 text-sm text-slate-300">We recommend materials, sizes, finishes, and confirm a timeline.</p>
           </div>
           <div class="lg:col-span-1 rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
             <div class="text-xs text-slate-400">Step 3</div>
@@ -516,56 +528,47 @@
             <p class="mt-2 text-sm text-slate-300">We print, finish, and coordinate pickup/shipping based on your needs.</p>
           </div>
         </div>
-
-        <div class="mt-8 grid md:grid-cols-2 gap-4">
-          <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <div class="font-semibold">If you already have files</div>
-            <p class="mt-2 text-sm text-slate-300">
-              Send them. We’ll preflight and tell you exactly what’s needed (if anything) before production.
-            </p>
-          </div>
-          <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <div class="font-semibold">If you don’t have files</div>
-            <p class="mt-2 text-sm text-slate-300">
-              Share a rough idea, a logo, and examples you like. We’ll design with print constraints baked in.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Case study teaser -->
+    <!-- Case study teaser section -->
     <section id="work" class="py-14 sm:py-16 border-t border-white/10 bg-slate-950">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div class="max-w-2xl">
             <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Work that’s meant to be handled, shipped, and remembered</h2>
             <p class="mt-2 text-slate-300">
-              Two mini case studies below are <span class="text-slate-200 font-semibold">placeholders</span>—swap in real ones whenever you’re ready.
+              These mini case studies are written as placeholders—swap in real ones anytime.
             </p>
           </div>
           <a href="#contact" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/15 ring-1 ring-white/15">
-            Request examples
+            Ask for examples
           </a>
         </div>
 
         <div class="mt-8 grid lg:grid-cols-2 gap-4">
-          <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <header class="flex items-start justify-between gap-4">
+          <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 overflow-hidden">
+            <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+              <svg viewBox="0 0 960 520" class="w-full h-auto" role="img" aria-label="Stock illustration: campaign assets board">
+                <use href="#pps-stock-case"></use>
+              </svg>
+            </div>
+
+            <header class="mt-5 flex items-start justify-between gap-4">
               <div>
                 <div class="text-xs text-slate-400">Placeholder case study</div>
-                <h3 class="mt-1 text-lg font-semibold">Trade show reset in 8 days</h3>
+                <h3 class="mt-1 text-lg font-semibold">Trade show reset in under two weeks</h3>
               </div>
               <span class="text-xs rounded-full bg-white/10 ring-1 ring-white/15 px-2 py-1 text-slate-200">Event</span>
             </header>
             <p class="mt-3 text-sm text-slate-300">
-              A team needed new booth messaging, handouts, and a cohesive kit before a major conference. We simplified the story, built a readable layout system,
-              and delivered a print bundle ready for travel.
+              A team needed new booth messaging, handouts, and a cohesive kit before a major conference.
+              We simplified the story, built a readable layout system, and delivered a print bundle ready for travel.
             </p>
             <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-indigo-300">→</span> Outcomes: clearer messaging + faster booth conversations</li>
               <li class="flex gap-2"><span class="text-indigo-300">→</span> Deliverables: flyers, product cards, tabletop sign, stickers</li>
-              <li class="flex gap-2"><span class="text-indigo-300">→</span> Timeline: proof in 48h (placeholder), production confirmed upfront</li>
+              <li class="flex gap-2"><span class="text-indigo-300">→</span> Focus: 6-foot readability + strong CTA</li>
+              <li class="flex gap-2"><span class="text-indigo-300">→</span> Outcome: fewer “what do you do?” conversations</li>
             </ul>
           </article>
 
@@ -577,14 +580,34 @@
               </div>
               <span class="text-xs rounded-full bg-white/10 ring-1 ring-white/15 px-2 py-1 text-slate-200">Product</span>
             </header>
+
             <p class="mt-3 text-sm text-slate-300">
-              A brand wanted premium packaging without committing to huge quantities. We helped choose finishes, tightened typography for shelf clarity,
-              and produced a small batch so they could validate positioning before scaling.
+              A brand wanted premium packaging without committing to huge quantities.
+              We helped choose finishes, tightened typography for shelf clarity, and produced a small batch so they could validate positioning before scaling.
             </p>
+
+            <div class="mt-5 grid grid-cols-3 gap-3">
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: packaging">
+                  <use href="#pps-stock-packaging"></use>
+                </svg>
+              </div>
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: labels">
+                  <use href="#pps-stock-stickers"></use>
+                </svg>
+              </div>
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <svg viewBox="0 0 600 480" class="w-full h-auto" role="img" aria-label="Stock illustration: insert card">
+                  <use href="#pps-stock-flyer"></use>
+                </svg>
+              </div>
+            </div>
+
             <ul class="mt-4 text-sm text-slate-200 space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-300">→</span> Outcomes: higher perceived value + fewer “what is this?” questions</li>
-              <li class="flex gap-2"><span class="text-emerald-300">→</span> Deliverables: labels, inserts, product cards, packaging assets</li>
               <li class="flex gap-2"><span class="text-emerald-300">→</span> Constraint: no minimums enabled iterative testing</li>
+              <li class="flex gap-2"><span class="text-emerald-300">→</span> Outcome: higher perceived value + clearer product story</li>
+              <li class="flex gap-2"><span class="text-emerald-300">→</span> Next: scale once the test run performs</li>
             </ul>
           </article>
         </div>
@@ -595,9 +618,9 @@
     <section id="faq" class="py-14 sm:py-16 border-t border-white/10 bg-slate-950">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="max-w-2xl">
-          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">FAQ (the things people ask before they commit)</h2>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">FAQ</h2>
           <p class="mt-2 text-slate-300">
-            If you don’t see your question, email us and we’ll answer with specifics.
+            The common questions people ask before they hit “send.”
           </p>
         </div>
 
@@ -643,25 +666,11 @@
               We can coordinate pickup or shipping depending on the job. Include your destination and deadline so we can plan it correctly.
             </p>
           </details>
-
-          <details class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <summary class="cursor-pointer font-semibold">What does it cost?</summary>
-            <p class="mt-3 text-sm text-slate-300">
-              Pricing depends on size, stock, finish, and quantity (even small batches vary). Email your specs and we’ll respond with options—not a vague range.
-            </p>
-          </details>
-
-          <details class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <summary class="cursor-pointer font-semibold">What’s the best way to get started?</summary>
-            <p class="mt-3 text-sm text-slate-300">
-              Email us your goal + deadline. If you have examples you like, include them. We’ll recommend a bundle and next steps.
-            </p>
-          </details>
         </div>
       </div>
     </section>
 
-    <!-- Free audit (secondary CTA anchor) -->
+    <!-- Free audit -->
     <section id="audit" class="py-14 sm:py-16 border-t border-white/10 bg-slate-950">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="rounded-3xl bg-gradient-to-br from-indigo-500/20 via-white/5 to-fuchsia-500/10 ring-1 ring-white/10 p-8">
@@ -703,19 +712,17 @@
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-6">
-            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Ready to print something you’re proud to hand out?</h2>
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Want to schedule a time to come in?</h2>
             <p class="mt-2 text-slate-300">
-              Tell us what you’re making and when you need it. We’ll reply with a clear plan: specs, options, timeline, and a quote.
+              Email us what you’re making and a few times that work. We’ll confirm and help you choose specs if you’re unsure.
             </p>
 
             <div class="mt-6 rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-              <div class="text-sm font-semibold">Email us</div>
+              <div class="text-sm font-semibold">Email</div>
               <p class="mt-2 text-sm text-slate-300">
                 <a class="text-white underline decoration-white/30 hover:decoration-white" href="mailto:parkplacestudios@gmail.com">parkplacestudios@gmail.com</a>
               </p>
-              <p class="mt-3 text-sm text-slate-300">
-                Want to schedule a time to come in? Email a couple of times that work for you and we’ll confirm.
-              </p>
+
               <div class="mt-4 flex flex-col sm:flex-row gap-3">
                 <a href="mailto:parkplacestudios@gmail.com?subject=Project%20Request%20%7C%20Park%20Place%20Studios&body=Hi%20Park%20Place%20Studios%2C%0A%0AHere%E2%80%99s%20what%20I%E2%80%99m%20making%3A%20%0ADeadline%3A%20%0AQuantity%3A%20%0ASize%3A%20%0AFinish%2Fmaterial%20(if%20known)%3A%20%0AReference%20links%2Fnotes%3A%20%0A%0AThanks!"
                    class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold bg-indigo-500 hover:bg-indigo-400 text-slate-950">
@@ -734,14 +741,14 @@
                 <ul class="mt-2 text-slate-300 space-y-2">
                   <li class="flex gap-2"><span class="text-emerald-300">✓</span> Deadline + delivery/pickup preference</li>
                   <li class="flex gap-2"><span class="text-emerald-300">✓</span> Size + quantity (even a guess)</li>
-                  <li class="flex gap-2"><span class="text-emerald-300">✓</span> Any reference you like</li>
+                  <li class="flex gap-2"><span class="text-emerald-300">✓</span> Examples you like (links/photos)</li>
                 </ul>
               </div>
               <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
                 <div class="font-semibold">You’ll get back</div>
                 <ul class="mt-2 text-slate-300 space-y-2">
                   <li class="flex gap-2"><span class="text-indigo-300">→</span> Recommended specs + finishes</li>
-                  <li class="flex gap-2"><span class="text-indigo-300">→</span> Clear quote (no mystery add-ons)</li>
+                  <li class="flex gap-2"><span class="text-indigo-300">→</span> Clear quote</li>
                   <li class="flex gap-2"><span class="text-indigo-300">→</span> Timeline you can plan around</li>
                 </ul>
               </div>
@@ -757,7 +764,6 @@
               </p>
 
               <form id="quoteForm" class="mt-6 space-y-4" action="mailto:parkplacestudios@gmail.com" method="GET">
-                <!-- Accessible labels -->
                 <div class="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label for="name" class="block text-sm font-medium text-slate-200">Name</label>
@@ -808,90 +814,4 @@
                       class="mt-1 w-full rounded-xl bg-slate-950/50 ring-1 ring-white/10 px-3 py-2 text-slate-100 placeholder:text-slate-500 focus:ring-2 focus:ring-indigo-400"
                       placeholder="e.g., 4x6, 8.5x11, custom" />
                   </div>
-                </div>
-
-                <div>
-                  <label for="message" class="block text-sm font-medium text-slate-200">Details</label>
-                  <textarea id="message" name="message" rows="5"
-                    class="mt-1 w-full rounded-xl bg-slate-950/50 ring-1 ring-white/10 px-3 py-2 text-slate-100 placeholder:text-slate-500 focus:ring-2 focus:ring-indigo-400"
-                    placeholder="What’s the goal? Any finishes/materials you’re considering? Share links or describe the vibe. If you have files, attach them to the email after it opens."></textarea>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                  <button type="submit"
-                    class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold bg-indigo-500 hover:bg-indigo-400 text-slate-950 shadow-glow">
-                    Send request (opens email)
-                  </button>
-                  <a href="mailto:parkplacestudios@gmail.com?subject=Free%20Print-Readiness%20Audit&body=Hi%20Park%20Place%20Studios%2C%0A%0AI%E2%80%99d%20like%20a%20free%20print-readiness%20audit.%0A%0AProject%3A%20%0ADeadline%3A%20%0AQuantity%3A%20%0ASize%3A%20%0AFiles%3A%20(attached)%0A%0AThanks!"
-                     class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold bg-white/10 hover:bg-white/15 ring-1 ring-white/15">
-                    Get a free audit
-                  </a>
-                </div>
-
-                <p class="text-xs text-slate-400">
-                  By contacting us, you agree we can reply to your message. No tracking scripts on this page.
-                </p>
-
-                <!--
-                  Upgrade to hosted form later:
-                  - Formspree: set action="https://formspree.io/f/xxxxxxx" method="POST"
-                  - Add an <input type="email" name="email"> field
-                  - Remove the JS mailto builder below
-                -->
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-white/10 bg-slate-950">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="text-indigo-300">
-                <path fill="currentColor" d="M7 3h10a2 2 0 0 1 2 2v6h-2V5H7v14h6v2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm9 10h6v8h-6v-8Zm2 2v4h2v-4h-2Z"/>
-              </svg>
-            </span>
-            <div>
-              <div class="font-semibold">Park Place Studios</div>
-              <div class="text-sm text-slate-400">Print + design for fast-moving teams.</div>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-4 text-sm text-slate-300">
-            <a href="#services" class="hover:text-white">Services</a>
-            <a href="#process" class="hover:text-white">Process</a>
-            <a href="#faq" class="hover:text-white">FAQ</a>
-            <a href="#contact" class="hover:text-white">Contact</a>
-            <span class="text-slate-600">|</span>
-            <a href="mailto:parkplacestudios@gmail.com" class="hover:text-white">parkplacestudios@gmail.com</a>
-          </div>
-        </div>
-
-        <div class="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-slate-500">
-          <p>© <span id="year"></span> Park Place Studios. All rights reserved.</p>
-          <p>
-            <a href="#" class="hover:text-slate-300">Privacy</a>
-            <span class="mx-2">•</span>
-            <a href="#" class="hover:text-slate-300">Terms</a>
-          </p>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- Minimal JS: mailto builder + year (no trackers, no heavy libs) -->
-  <script>
-    (function () {
-      const yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      const form = document.getElementById('quoteForm');
-      if (!form) return;
-
-      form.addEventListener('submit', function (e) {
-        // Keep it simple: build a mailto URL with subject/body from fields
-        e.preventDefault();
+                </div
