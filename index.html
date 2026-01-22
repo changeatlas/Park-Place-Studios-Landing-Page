@@ -1,736 +1,1102 @@
+Assumptions (so I can ship this in one shot):
+
+* Agency name: **Park Place Studios** (matches the provided email).
+* Primary offer: performance marketing + conversion-focused landing pages for service brands and ecommerce.
+* Lead goal: book a call / start a project via email-first contact.
+* Single-page site with anchor navigation; no blog needed yet.
+* Placeholder metrics/case studies clearly labeled **Example** until replaced with real data.
+* Neutral, premium palette with gradients + inline SVG placeholders (easy to swap later).
+
+```html
+<!--
+SEO + DEPLOY NOTES
+1) SEO META: Update <title> + meta description below. Add:
+   - Open Graph (og:title, og:description, og:image, og:url)
+   - Twitter Card (twitter:card, twitter:title, twitter:description, twitter:image)
+   - Canonical link placeholder (rel="canonical")
+   - Favicon placeholder (link rel="icon")
+2) DEPLOY: Put index.html at repo root.
+   - Deploy to Vercel as a Static site (no build step).
+   - Connect domain via Vercel Domains.
+   - Update DNS at GoDaddy to match Vercel instructions (A / CNAME records).
+-->
+
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Park Place Industries (Park Place Studios) — design, creative, marketing, and fast-turn printing." />
-  <title>Park Place Industries | Park Place Studios</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Social preview (optional - update the URL + image when you have them) -->
-  <meta property="og:title" content="Park Place Industries | Park Place Studios" />
-  <meta property="og:description" content="Design, creative, marketing, and next-day printing turnaround." />
-  <meta property="og:type" content="website" />
+    <title>Park Place Studios — Performance marketing + CRO that turns clicks into customers</title>
+    <meta
+      name="description"
+      content="Park Place Studios builds high-converting paid campaigns and landing pages. Clear strategy, tight execution, honest reporting, and fast iteration—so you know what’s working and why."
+    />
 
-  <style>
-    :root{
-      --bg: #0b0d12;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.55);
-      --line: rgba(255,255,255,.12);
-      --brand: #7c5cff;
-      --brand2:#37d1ff;
-      --ok: #30d158;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 24px;
-      --max: 1120px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
+    <!-- Canonical placeholder -->
+    <link rel="canonical" href="https://your-domain.com/" />
 
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: var(--font);
-      color: var(--text);
-      background:
-        radial-gradient(900px 600px at 20% 10%, rgba(124,92,255,.35), transparent 55%),
-        radial-gradient(800px 500px at 80% 20%, rgba(55,209,255,.28), transparent 60%),
-        radial-gradient(900px 600px at 50% 110%, rgba(48,209,88,.18), transparent 50%),
-        var(--bg);
-      line-height: 1.4;
-    }
+    <!-- Open Graph placeholders -->
+    <meta property="og:title" content="Park Place Studios" />
+    <meta property="og:description" content="Performance marketing + CRO that turns clicks into customers." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-domain.com/" />
+    <meta property="og:image" content="https://your-domain.com/og-image.png" />
 
-    a{ color: inherit; text-decoration: none; }
-    .container{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    <!-- Twitter placeholders -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Park Place Studios" />
+    <meta name="twitter:description" content="Performance marketing + CRO that turns clicks into customers." />
+    <meta name="twitter:image" content="https://your-domain.com/og-image.png" />
 
-    /* Nav */
-    header{
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(11,13,18,.65);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-      gap: 18px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      font-weight: 750;
-      letter-spacing: .2px;
-      white-space: nowrap;
-    }
-    .logo{
-      width: 36px; height: 36px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.55), transparent 50%);
-      transform: rotate(18deg);
-    }
-    .navlinks{
-      display:flex; gap: 18px; align-items:center;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .navlinks a{ padding: 10px 10px; border-radius: 12px; }
-    .navlinks a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-    .navcta{
-      display:flex; align-items:center; gap:10px;
-    }
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="/favicon.ico" />
 
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap: 10px;
-      padding: 11px 14px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.18); }
-    .btn.primary{
-      border: 1px solid rgba(124,92,255,.45);
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(55,209,255,.85));
-      color: #071018;
-    }
-    .btn.primary:hover{ transform: translateY(-1px) scale(1.01); }
-    .btn.small{ padding: 10px 12px; border-radius: 12px; font-size: 13px; }
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config (small, keeps it self-contained)
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Inter", "Roboto", "Helvetica", "Arial", "Apple Color Emoji", "Segoe UI Emoji"],
+            },
+            boxShadow: {
+              soft: "0 10px 30px rgba(2,6,23,.12)",
+              glow: "0 0 0 1px rgba(148,163,184,.25), 0 20px 60px rgba(2,6,23,.25)",
+            },
+          },
+        },
+      };
+    </script>
 
-    .hamburger{ display:none; }
-    @media (max-width: 860px){
-      .navlinks{ display:none; }
-      .hamburger{ display:inline-flex; }
-    }
+    <style>
+      /* Minimal custom CSS: smooth anchor offset for sticky nav + focus ring */
+      :root { scroll-behavior: smooth; }
+      section[id] { scroll-margin-top: 88px; }
+      .focus-ring:focus-visible { outline: 3px solid rgba(59,130,246,.55); outline-offset: 3px; border-radius: 10px; }
+    </style>
+  </head>
 
-    /* Hero */
-    .hero{
-      padding: 70px 0 34px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-    @media (max-width: 920px){
-      .heroGrid{ grid-template-columns: 1fr; }
-    }
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-sky-400/30 selection:text-white">
+    <!-- Background glow -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
+      <div class="absolute -top-24 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-gradient-to-br from-sky-500/25 via-indigo-500/15 to-fuchsia-500/15 blur-3xl"></div>
+      <div class="absolute -bottom-32 right-[-120px] h-[520px] w-[520px] rounded-full bg-gradient-to-br from-emerald-400/10 via-sky-500/10 to-indigo-500/10 blur-3xl"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_20%,rgba(59,130,246,0.14),transparent_55%),radial-gradient(800px_circle_at_80%_40%,rgba(168,85,247,0.10),transparent_55%),radial-gradient(900px_circle_at_60%_90%,rgba(16,185,129,0.08),transparent_60%)]"></div>
+    </div>
 
-    .pill{
-      display:inline-flex;
-      gap: 10px;
-      align-items:center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 650;
-      width: fit-content;
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--ok);
-      box-shadow: 0 0 0 4px rgba(48,209,88,.15);
-    }
+    <!-- Skip link -->
+    <a href="#main" class="focus-ring sr-only focus:not-sr-only fixed left-4 top-4 z-[60] rounded-xl bg-slate-900/90 px-4 py-2 text-sm text-white shadow-soft backdrop-blur">
+      Skip to content
+    </a>
 
-    h1{
-      margin: 14px 0 12px;
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.05;
-      letter-spacing: -.8px;
-    }
-    .sub{
-      font-size: 16px;
-      color: var(--muted);
-      margin: 0 0 22px;
-      max-width: 62ch;
-    }
-
-    .heroActions{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-      align-items:center;
-      margin: 0 0 22px;
-    }
-
-    .trust{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      color: var(--muted2);
-      font-size: 13px;
-      margin-top: 6px;
-    }
-    .trust span{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      padding: 8px 10px;
-      border-radius: 999px;
-    }
-
-    .panel{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-    }
-
-    /* Quick Order Card */
-    .card{
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap: 14px;
-    }
-    .card h3{
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: -.2px;
-    }
-    .card p{ margin: 0; color: var(--muted); font-size: 14px; }
-    .grid2{
-      display:grid; grid-template-columns: 1fr 1fr; gap: 10px;
-    }
-    @media (max-width: 520px){
-      .grid2{ grid-template-columns: 1fr; }
-    }
-    label{
-      font-size: 12px;
-      color: var(--muted2);
-      font-weight: 700;
-      display:block;
-      margin: 0 0 6px;
-    }
-    input, select, textarea{
-      width: 100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      outline: none;
-      font-family: var(--font);
-      font-size: 14px;
-    }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(124,92,255,.55);
-      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
-    }
-    textarea{ min-height: 110px; resize: vertical; }
-
-    .note{
-      border: 1px solid rgba(55,209,255,.25);
-      background: rgba(55,209,255,.08);
-      color: rgba(255,255,255,.85);
-      padding: 10px 12px;
-      border-radius: 14px;
-      font-size: 13px;
-      line-height: 1.35;
-    }
-
-    /* Sections */
-    section{ padding: 34px 0; }
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    h2{
-      margin:0;
-      font-size: 24px;
-      letter-spacing: -.4px;
-    }
-    .sectionHead p{
-      margin:0;
-      color: var(--muted);
-      max-width: 70ch;
-      font-size: 14px;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .service{
-      grid-column: span 4;
-      padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      min-height: 150px;
-    }
-    .service:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
-    }
-    .service h4{
-      margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: -.2px;
-    }
-    .service p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    @media (max-width: 980px){
-      .service{ grid-column: span 6; }
-    }
-    @media (max-width: 620px){
-      .service{ grid-column: span 12; }
-    }
-
-    /* Process */
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 14px;
-    }
-    @media (max-width: 860px){
-      .steps{ grid-template-columns: 1fr; }
-    }
-    .step{
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.04);
-    }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-weight: 800;
-      letter-spacing: .2px;
-      font-size: 13px;
-      color: rgba(255,255,255,.88);
-      margin-bottom: 10px;
-    }
-    .num{
-      width: 26px; height: 26px; border-radius: 9px;
-      background: rgba(124,92,255,.22);
-      border: 1px solid rgba(124,92,255,.35);
-      display:inline-flex; align-items:center; justify-content:center;
-      font-size: 13px;
-    }
-
-    /* Footer */
-    footer{
-      padding: 34px 0 46px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
-    .footerGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
-      align-items:start;
-    }
-    @media (max-width: 860px){
-      .footerGrid{ grid-template-columns: 1fr; }
-    }
-    .footerCard{
-      padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-    }
-    .tiny{ font-size: 12px; color: var(--muted2); margin-top: 10px; }
-
-    /* Mobile menu */
-    .mobileMenu{
-      display:none;
-      padding-bottom: 14px;
-    }
-    .mobileMenu.open{ display:block; }
-    .mobileMenu a{
-      display:block;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      margin-top: 10px;
-      color: var(--muted);
-      font-weight: 650;
-    }
-    .mobileMenu a:hover{ color: var(--text); background: rgba(255,255,255,.06); }
-
-    /* Accessibility helper */
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
-      clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Park Place Industries home">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            Park Place Industries<br />
-            <span style="font-weight:650; color: var(--muted); font-size: 13px;">Park Place Studios</span>
+    <!-- 1) Sticky top nav -->
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Primary">
+        <a href="#" class="focus-ring flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/90 to-indigo-500/90 shadow-soft">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 text-slate-950">
+              <path fill="currentColor" d="M12 2l9 5v10l-9 5-9-5V7l9-5zm0 2.3L5 7.9v8.2l7 3.6 7-3.6V7.9l-7-3.6z"/>
+              <path fill="currentColor" d="M8.2 9.3h7.6v1.7H8.2zM8.2 12.9h5.2v1.7H8.2z"/>
+            </svg>
+          </span>
+          <div class="leading-tight">
+            <span class="block text-sm font-semibold tracking-tight">Park Place Studios</span>
+            <span class="block text-xs text-slate-300/90">Performance marketing + CRO</span>
           </div>
         </a>
 
-        <nav class="navlinks" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#printing">Printing</a>
-          <a href="#merch">Merch</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <!-- Desktop links -->
+        <div class="hidden items-center gap-6 md:flex">
+          <a class="focus-ring text-sm text-slate-200/90 hover:text-white" href="#services">Services</a>
+          <a class="focus-ring text-sm text-slate-200/90 hover:text-white" href="#process">Process</a>
+          <a class="focus-ring text-sm text-slate-200/90 hover:text-white" href="#cases">Case studies</a>
+          <a class="focus-ring text-sm text-slate-200/90 hover:text-white" href="#faq">FAQ</a>
 
-        <div class="navcta">
-          <button class="btn small hamburger" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
-            Menu
-          </button>
-          <a class="btn primary" href="#contact">Contact / Visit</a>
+          <!-- CTA: must link to #contact -->
+          <a
+            href="#contact"
+            class="focus-ring inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-soft hover:bg-slate-100"
+          >
+            Contact us
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          id="menuBtn"
+          class="focus-ring md:hidden inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white hover:bg-white/10"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile menu panel -->
+      <div id="mobileMenu" class="hidden border-t border-white/10 bg-slate-950/80 backdrop-blur md:hidden">
+        <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6 lg:px-8">
+          <a class="focus-ring rounded-lg px-3 py-2 text-sm text-slate-200/90 hover:bg-white/5 hover:text-white" href="#services">Services</a>
+          <a class="focus-ring rounded-lg px-3 py-2 text-sm text-slate-200/90 hover:bg-white/5 hover:text-white" href="#process">Process</a>
+          <a class="focus-ring rounded-lg px-3 py-2 text-sm text-slate-200/90 hover:bg-white/5 hover:text-white" href="#cases">Case studies</a>
+          <a class="focus-ring rounded-lg px-3 py-2 text-sm text-slate-200/90 hover:bg-white/5 hover:text-white" href="#faq">FAQ</a>
+          <a
+            href="#contact"
+            class="focus-ring mt-2 inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-soft hover:bg-slate-100"
+          >
+            Contact us
+          </a>
         </div>
       </div>
+    </header>
 
-      <div id="mobileMenu" class="mobileMenu" aria-label="Mobile">
-        <a href="#services">Services</a>
-        <a href="#printing">Printing</a>
-        <a href="#merch">Merch</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </header>
+    <main id="main">
+      <!-- 2) Hero -->
+      <section class="relative">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200/90">
+                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                Taking on a limited number of projects
+              </div>
 
-  <main id="top">
-    <div class="container">
-      <section class="hero">
-        <div class="heroGrid">
-          <div>
-            <div class="pill">
-              <span class="dot" aria-hidden="true"></span>
-              Design • Creative • Marketing • Fast Turn Printing
+              <h1 class="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Turn paid traffic into booked calls and purchases—without guessing.
+              </h1>
+
+              <p class="mt-5 max-w-2xl text-base leading-relaxed text-slate-200/90 sm:text-lg">
+                We build and optimize the full path: ads, creative, landing pages, and measurement.
+                You get a clear plan, tight execution, and reporting that explains what changed and why it worked.
+              </p>
+
+              <ul class="mt-6 grid gap-3 sm:grid-cols-3">
+                <li class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-sm font-semibold">Lower CPA</p>
+                  <p class="mt-1 text-sm text-slate-200/80">Fix funnel leaks before scaling spend.</p>
+                </li>
+                <li class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-sm font-semibold">More conversion</p>
+                  <p class="mt-1 text-sm text-slate-200/80">Landing pages built to close.</p>
+                </li>
+                <li class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-sm font-semibold">Clean attribution</p>
+                  <p class="mt-1 text-sm text-slate-200/80">Know what’s driving revenue.</p>
+                </li>
+              </ul>
+
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <!-- CTA: must link to #contact -->
+                <a
+                  href="#contact"
+                  class="focus-ring inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow hover:bg-slate-100"
+                >
+                  Contact us
+                </a>
+
+                <a href="#cases" class="focus-ring inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">
+                  See examples
+                </a>
+
+                <div class="text-xs text-slate-300/80 sm:ml-2">
+                  Typical first response: <span class="font-semibold text-slate-100">same day</span><br class="sm:hidden" />
+                  First plan: <span class="font-semibold text-slate-100">3–5 business days</span>
+                </div>
+              </div>
+
+              <div class="mt-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-5">
+                <p class="text-sm font-semibold text-white">What you get (day 1–30)</p>
+                <div class="mt-3 grid gap-2 sm:grid-cols-2">
+                  <div class="flex gap-3 text-sm text-slate-200/90">
+                    <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-200">
+                      <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.415 0l-3.5-3.5a1 1 0 011.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                    </span>
+                    Audit + prioritized fixes (not a deck of opinions)
+                  </div>
+                  <div class="flex gap-3 text-sm text-slate-200/90">
+                    <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-200">
+                      <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.415 0l-3.5-3.5a1 1 0 011.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                    </span>
+                    Tracking sanity check (events, UTMs, GA4)
+                  </div>
+                  <div class="flex gap-3 text-sm text-slate-200/90">
+                    <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-200">
+                      <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.415 0l-3.5-3.5a1 1 0 011.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                    </span>
+                    Landing page improvements with measurable tests
+                  </div>
+                  <div class="flex gap-3 text-sm text-slate-200/90">
+                    <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-200">
+                      <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.415 0l-3.5-3.5a1 1 0 011.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                    </span>
+                    Weekly update: changes, outcomes, next moves
+                  </div>
+                </div>
+                <p class="mt-4 text-xs text-slate-300/80">
+                  Promise: if we can’t find a realistic path to improvement in the first 2 weeks, we’ll tell you—plainly.
+                </p>
+              </div>
             </div>
 
-            <h1>
-              Modern design and printing that makes your brand impossible to ignore.
-            </h1>
+            <!-- Hero visual -->
+            <div class="lg:col-span-5">
+              <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] shadow-glow">
+                <div class="absolute inset-0 bg-[radial-gradient(800px_circle_at_30%_20%,rgba(56,189,248,0.18),transparent_55%),radial-gradient(700px_circle_at_70%_60%,rgba(139,92,246,0.16),transparent_55%)]"></div>
+                <div class="relative p-6 sm:p-8">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-semibold">Weekly performance snapshot</p>
+                      <p class="text-xs text-slate-300/80">Example layout — swap with real screenshots later</p>
+                    </div>
+                    <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200/90">Last 7 days</span>
+                  </div>
 
-            <p class="sub">
-              Park Place Industries (Park Place Studios) is your local partner for custom design services,
-              marketing support, and reliable printing — including next-day turnaround options, quality merch blanks,
-              and pro finishing.
-            </p>
+                  <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                      <p class="text-xs text-slate-300/80">Cost per lead</p>
+                      <p class="mt-2 text-2xl font-semibold">$42.10</p>
+                      <p class="mt-1 text-xs text-emerald-200">↓ 18% vs prior period</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                      <p class="text-xs text-slate-300/80">Conversion rate</p>
+                      <p class="mt-2 text-2xl font-semibold">6.4%</p>
+                      <p class="mt-1 text-xs text-emerald-200">↑ 1.2 pts</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                      <p class="text-xs text-slate-300/80">Revenue tracked</p>
+                      <p class="mt-2 text-2xl font-semibold">$38.7k</p>
+                      <p class="mt-1 text-xs text-slate-300/80">Attributed (example)</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                      <p class="text-xs text-slate-300/80">Next experiment</p>
+                      <p class="mt-2 text-sm font-semibold">Offer test: “Same-week install”</p>
+                      <p class="mt-1 text-xs text-slate-300/80">Launch: Tuesday</p>
+                    </div>
+                  </div>
 
-            <div class="heroActions">
-              <a class="btn primary" href="#contact">Book a Consultation</a>
-              <a class="btn" href="#printing">Get Printing Services</a>
-              <a class="btn" href="#services">Explore Services</a>
-            </div>
+                  <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                    <div class="flex items-center justify-between">
+                      <p class="text-sm font-semibold">Funnel view</p>
+                      <p class="text-xs text-slate-300/80">Example chart</p>
+                    </div>
+                    <svg class="mt-3 h-24 w-full" viewBox="0 0 600 120" role="img" aria-label="Example funnel chart">
+                      <defs>
+                        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+                          <stop offset="0" stop-color="rgba(56,189,248,0.85)"/>
+                          <stop offset="1" stop-color="rgba(139,92,246,0.85)"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M20 95 C 90 30, 150 30, 220 70 S 360 110, 450 55 S 540 35, 580 65"
+                            fill="none" stroke="url(#g1)" stroke-width="6" stroke-linecap="round"/>
+                      <path d="M20 110h560" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+                      <circle cx="220" cy="70" r="5" fill="rgba(56,189,248,0.95)"/>
+                      <circle cx="450" cy="55" r="5" fill="rgba(139,92,246,0.95)"/>
+                    </svg>
+                  </div>
 
-            <div class="trust" aria-label="Highlights">
-              <span>Next-day turnaround available*</span>
-              <span>Brand + design done in-house</span>
-              <span>Premium blanks & finishing</span>
+                  <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="text-xs text-slate-300/80">
+                      No surprises: you’ll see tests, results, and what we’re doing next.
+                    </div>
+                    <!-- CTA: must link to #contact -->
+                    <a href="#contact" class="focus-ring inline-flex items-center justify-center rounded-2xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-950 hover:bg-slate-100">
+                      Contact us
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-sm font-semibold">Who it’s for</p>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Teams spending $3k–$150k/mo on ads who want tighter efficiency and better pages.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-sm font-semibold">Not a fit</p>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    If you want “set it and forget it” ads, or vanity metrics, we’re not your shop.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-
-          <aside class="panel card" aria-label="Quick request form">
-            <h3>Quick Request</h3>
-            <p>Tell us what you need. We’ll follow up ASAP with options, pricing, and timelines.</p>
-
-            <!--
-              GoDaddy NOTE:
-              This form uses mailto by default (works everywhere, but relies on the visitor’s email client).
-              For a more reliable form, connect it to a service (Formspree, Basin, Netlify Forms, etc.)
-              or wire it to your own server endpoint.
-            -->
-            <form id="leadForm" action="mailto:you@yourdomain.com" method="post" enctype="text/plain">
-              <div class="grid2">
-                <div>
-                  <label for="name">Name</label>
-                  <input id="name" name="name" placeholder="Your name" autocomplete="name" required />
-                </div>
-                <div>
-                  <label for="phone">Phone</label>
-                  <input id="phone" name="phone" placeholder="(555) 555-5555" autocomplete="tel" />
-                </div>
-              </div>
-
-              <div class="grid2">
-                <div>
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required />
-                </div>
-                <div>
-                  <label for="service">Interested in</label>
-                  <select id="service" name="service">
-                    <option>Custom Design</option>
-                    <option>Marketing & Creative</option>
-                    <option>Next-Day Printing</option>
-                    <option>Merch & Apparel</option>
-                    <option>Branding / Identity</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label for="details">Project details</label>
-                <textarea id="details" name="details" placeholder="What are we making? Quantity, sizes, deadline, links, etc."></textarea>
-              </div>
-
-              <button class="btn primary" type="submit">Send Request</button>
-
-              <div class="note">
-                Prefer in-person? Visit us for a consultation or walk in for printing services.
-                <strong>*</strong>Next-day depends on project type, artwork readiness, and capacity.
-              </div>
-            </form>
-          </aside>
         </div>
       </section>
 
+      <!-- 3) Social proof -->
+      <section class="border-y border-white/10 bg-white/[0.02]">
+        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h2 class="text-2xl font-semibold tracking-tight text-white">Trusted by teams who care about outcomes</h2>
+              <p class="mt-2 max-w-2xl text-sm text-slate-200/80">
+                Placeholder logos + metrics (swap with your real client list and results). We keep reporting honest: what moved, what didn’t, and what we’ll try next.
+              </p>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                <p class="text-xs text-slate-300/80">Avg. time to first lift</p>
+                <p class="mt-2 text-2xl font-semibold">14–21 days</p>
+                <p class="mt-1 text-xs text-slate-300/80">Example</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                <p class="text-xs text-slate-300/80">Typical test cadence</p>
+                <p class="mt-2 text-2xl font-semibold">2–5 / week</p>
+                <p class="mt-1 text-xs text-slate-300/80">Example</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                <p class="text-xs text-slate-300/80">Reporting clarity</p>
+                <p class="mt-2 text-2xl font-semibold">Weekly</p>
+                <p class="mt-1 text-xs text-slate-300/80">Short + readable</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6" aria-label="Client logos (placeholders)">
+            <!-- Logo placeholders -->
+            <div class="flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4">
+              <span class="text-xs font-semibold tracking-wide text-slate-200/80">CLIENT ONE</span>
+            </div>
+            <div class="flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4">
+              <span class="text-xs font-semibold tracking-wide text-slate-200/80">CLIENT TWO</span>
+            </div>
+            <div class="flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4">
+              <span class="text-xs font-semibold tracking-wide text-slate-200/80">CLIENT THREE</span>
+            </div>
+            <div class="flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4">
+              <span class="text-xs font-semibold tracking-wide text-slate-200/80">CLIENT FOUR</span>
+            </div>
+            <div class="flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4">
+              <span class="text-xs font-semibold tracking-wide text-slate-200/80">CLIENT FIVE</span>
+            </div>
+            <div class="flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4">
+              <span class="text-xs font-semibold tracking-wide text-slate-200/80">CLIENT SIX</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4) Services -->
       <section id="services">
-        <div class="sectionHead">
-          <div>
-            <h2>Services</h2>
-            <p>Everything you need to launch, refresh, and grow — from creative strategy to production-ready execution.</p>
-          </div>
-        </div>
-
-        <div class="cards" role="list">
-          <div class="service" role="listitem">
-            <h4>Custom Design</h4>
-            <p>Logos, layouts, brand systems, packaging, and design support built for real-world use.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Branding & Identity</h4>
-            <p>Naming, visual identity, guidelines, and templates to keep your brand consistent.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Marketing & Creative</h4>
-            <p>Campaign concepts, content design, ad creative, and launch assets that convert.</p>
-          </div>
-
-          <div class="service" role="listitem">
-            <h4>Web & Digital Assets</h4>
-            <p>Landing pages, social templates, email graphics, and digital brand kits.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Print Production</h4>
-            <p>Press-ready setup, color checks, proofing, and finishing options for a premium look.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Consultation & Direction</h4>
-            <p>Not sure what you need? We’ll recommend the fastest path to the best result.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="printing">
-        <div class="sectionHead">
-          <div>
-            <h2>Printing</h2>
-            <p>Fast turnaround with quality control. Perfect for events, launches, and everyday business needs.</p>
-          </div>
-          <a class="btn" href="#contact">Request Pricing</a>
-        </div>
-
-        <div class="cards" role="list">
-          <div class="service" role="listitem">
-            <h4>Next-Day Turnaround*</h4>
-            <p>Rush options available for select jobs — bring your files or let us design it for you.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Business Essentials</h4>
-            <p>Cards, flyers, menus, posters, signage, window graphics, and more.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Finishing & Quality</h4>
-            <p>Trim, laminate, mount, fold, and other finishing options for a clean final product.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="merch">
-        <div class="sectionHead">
-          <div>
-            <h2>Merch & Apparel</h2>
-            <p>Quality merch blanks and custom decoration options so your gear looks and feels premium.</p>
-          </div>
-          <a class="btn" href="#contact">Ask About Blanks</a>
-        </div>
-
-        <div class="cards" role="list">
-          <div class="service" role="listitem">
-            <h4>Quality Merch Blanks</h4>
-            <p>Curated blanks and fits — great for brands, teams, and employee gear.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Custom Decoration</h4>
-            <p>Design placement support, sizing guidance, and production-ready artwork setup.</p>
-          </div>
-          <div class="service" role="listitem">
-            <h4>Bulk & Event Orders</h4>
-            <p>Need it for a drop or event? We’ll guide quantities, timelines, and packaging.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="process">
-        <div class="sectionHead">
-          <div>
-            <h2>Simple process. Professional results.</h2>
-            <p>Walk in for printing services or schedule a consultation for branding, design, or marketing support.</p>
-          </div>
-        </div>
-
-        <div class="steps">
-          <div class="step">
-            <div class="kicker"><span class="num">1</span> Tell us what you need</div>
-            <p class="sub" style="margin:0; font-size:14px;">
-              Share your idea, deadline, and budget. Bring files or start from scratch with our design team.
-            </p>
-          </div>
-          <div class="step">
-            <div class="kicker"><span class="num">2</span> Approve the plan</div>
-            <p class="sub" style="margin:0; font-size:14px;">
-              We confirm specs, timelines, and proofs so you know exactly what you’re getting.
-            </p>
-          </div>
-          <div class="step">
-            <div class="kicker"><span class="num">3</span> Pick up and impress</div>
-            <p class="sub" style="margin:0; font-size:14px;">
-              Clean, modern output with reliable turnaround. Rush options available on select orders.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="sectionHead">
-          <div>
-            <h2>Contact or visit us</h2>
-            <p>
-              Ready to start? Reach out to book a consultation or stop by for printing services.
-              Replace the placeholders below with your real phone, email, and address.
-            </p>
-          </div>
-        </div>
-
-        <div class="cards">
-          <div class="service" style="grid-column: span 7;">
-            <h4>Contact</h4>
-            <p style="margin-bottom:10px;">
-              <strong>Phone:</strong> <a href="tel:+15555555555">(555) 555-5555</a><br />
-              <strong>Email:</strong> <a href="mailto:hello@parkplaceindustries.com">hello@parkplaceindustries.com</a>
-            </p>
-            <div class="heroActions" style="margin: 0;">
-              <a class="btn primary" href="mailto:hello@parkplaceindustries.com?subject=Consultation%20Request%20-%20Park%20Place%20Studios">Email Us</a>
-              <a class="btn" href="tel:+15555555555">Call Now</a>
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h2 class="text-3xl font-semibold tracking-tight text-white">Services built around the revenue path</h2>
+              <p class="mt-3 max-w-2xl text-sm text-slate-200/80">
+                Most ad problems are funnel problems in disguise. We prioritize the bottleneck that makes the biggest difference—then iterate.
+              </p>
             </div>
-            <p class="tiny">
-              Tip: Update the “Quick Request” form email at the top (mailto:you@yourdomain.com) to your real inbox.
-            </p>
-          </div>
-
-          <div class="service" style="grid-column: span 5;">
-            <h4>Visit</h4>
-            <p style="margin-bottom:10px;">
-              <strong>Address:</strong> 123 Main Street, Your City, ST 00000<br />
-              <strong>Hours:</strong> Mon–Fri 9am–6pm • Sat 10am–2pm
-            </p>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=123+Main+Street+Your+City+ST+00000" target="_blank" rel="noopener">
-              Get Directions
+            <!-- CTA: must link to #contact -->
+            <a href="#contact" class="focus-ring inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
+              Contact us
             </a>
-            <p class="tiny">
-              Replace the address/hours with your actual info.
-            </p>
           </div>
-        </div>
-      </section>
 
-      <footer>
-        <div class="footerGrid">
-          <div>
-            <div class="brand" style="margin-bottom:10px;">
-              <div class="logo" aria-hidden="true"></div>
-              <div>
-                Park Place Industries<br />
-                <span style="font-weight:650; color: var(--muted); font-size: 13px;">Park Place Studios</span>
+          <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Card -->
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex items-start gap-4">
+                <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-400/15 text-sky-200">
+                  <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 16l6-6 4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold">Paid Social (Meta/TikTok)</h3>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Build account structure + creative testing so you can scale without your CPA exploding.
+                  </p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-slate-200/90">
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Creative angles + hooks with a test plan</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Audience & bidding strategy that’s explainable</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Weekly optimization focused on cost + quality</li>
+              </ul>
+            </article>
+
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex items-start gap-4">
+                <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-400/15 text-indigo-200">
+                  <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M10 14a2 2 0 104 0v-3a2 2 0 10-4 0v3z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 12a6 6 0 1112 0v2a6 6 0 11-12 0v-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold">Google Ads (Search/PMAX)</h3>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Capture high-intent demand and cut waste with better queries, offers, and landing pages.
+                  </p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-slate-200/90">
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Keyword + query discipline (negative hygiene)</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Offer match to intent (no generic pages)</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Measured experiments, not “optimizations”</li>
+              </ul>
+            </article>
+
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex items-start gap-4">
+                <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-400/15 text-emerald-200">
+                  <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 8h10M7 12h6M7 16h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold">Landing Pages & CRO</h3>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Pages engineered to convert—faster load, clearer offer, better proof, fewer leaks.
+                  </p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-slate-200/90">
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Message match from ad → page → form</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> A/B tests prioritized by impact</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Accessibility + performance baked in</li>
+              </ul>
+            </article>
+
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex items-start gap-4">
+                <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-400/15 text-fuchsia-200">
+                  <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 7l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M17 7L7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold">Creative that earns attention</h3>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Concepts built from objections and intent—not trends. Designed for iteration.
+                  </p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-slate-200/90">
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> New angles based on real customer language</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Fast production cycles with clear briefs</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Performance review: winners + why</li>
+              </ul>
+            </article>
+
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex items-start gap-4">
+                <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-400/15 text-amber-200">
+                  <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 8h12M6 12h8M6 16h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold">Email/SMS flows</h3>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Recover abandoners, convert new leads, and increase repeat purchase with smart automation.
+                  </p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-slate-200/90">
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Revenue-focused flows (welcome, cart, winback)</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Copy that addresses objections, not noise</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Clean segmentation + deliverability basics</li>
+              </ul>
+            </article>
+
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex items-start gap-4">
+                <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-400/15 text-cyan-200">
+                  <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold">Analytics & measurement</h3>
+                  <p class="mt-1 text-sm text-slate-200/80">
+                    Track what matters: leads, revenue, and quality—so decisions aren’t made on gut feel.
+                  </p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-slate-200/90">
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> GA4 events + conversion mapping</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> UTM hygiene + source-of-truth dashboards</li>
+                <li class="flex gap-2"><span class="text-emerald-200">•</span> Weekly narrative: “what changed + why”</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <div class="grid gap-6 lg:grid-cols-12 lg:items-center">
+              <div class="lg:col-span-8">
+                <h3 class="text-xl font-semibold">A clear engagement: no mystery retainers</h3>
+                <p class="mt-2 text-sm text-slate-200/80">
+                  You’ll always know what we’re working on this week, what shipped last week, and what the data says. If something isn’t working, we say it and change it.
+                </p>
+                <div class="mt-4 grid gap-2 sm:grid-cols-2">
+                  <p class="flex gap-2 text-sm text-slate-200/90"><span class="text-emerald-200">•</span> Weekly priorities + deliverables</p>
+                  <p class="flex gap-2 text-sm text-slate-200/90"><span class="text-emerald-200">•</span> Test log with decisions</p>
+                  <p class="flex gap-2 text-sm text-slate-200/90"><span class="text-emerald-200">•</span> Performance notes in plain English</p>
+                  <p class="flex gap-2 text-sm text-slate-200/90"><span class="text-emerald-200">•</span> Slack/email updates (your preference)</p>
+                </div>
+              </div>
+              <div class="lg:col-span-4">
+                <!-- CTA: must link to #contact -->
+                <a href="#contact" class="focus-ring block w-full rounded-2xl bg-white px-6 py-3 text-center text-sm font-semibold text-slate-950 shadow-soft hover:bg-slate-100">
+                  Contact us
+                </a>
+                <p class="mt-2 text-center text-xs text-slate-300/80">We’ll reply with next steps + a short checklist.</p>
               </div>
             </div>
-            <div class="tiny">
-              © <span id="year"></span> Park Place Industries. All rights reserved.
-            </div>
           </div>
+        </div>
+      </section>
 
-          <div class="footerCard">
-            <div style="font-weight:800; color: rgba(255,255,255,.9);">Fast links</div>
-            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;">
-              <a class="btn small" href="#services">Services</a>
-              <a class="btn small" href="#printing">Printing</a>
-              <a class="btn small" href="#merch">Merch</a>
-              <a class="btn small" href="#contact">Contact</a>
+      <!-- 5) Process -->
+      <section id="process" class="border-y border-white/10 bg-white/[0.02]">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
+            <div class="lg:col-span-5">
+              <h2 class="text-3xl font-semibold tracking-tight text-white">A process that reduces risk</h2>
+              <p class="mt-3 text-sm text-slate-200/80">
+                You shouldn’t have to “hope” an agency figures it out. We start with fundamentals, ship quickly, then iterate with proof.
+              </p>
+
+              <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                <p class="text-sm font-semibold">Timeline expectations</p>
+                <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Week 1: audit + tracking + quick wins</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Weeks 2–3: creative + page tests live</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Week 4+: scale what wins, cut what doesn’t</li>
+                </ul>
+              </div>
             </div>
-            <div class="tiny">
-              *Next-day turnaround subject to artwork readiness, materials, and shop capacity.
+
+            <div class="lg:col-span-7">
+              <ol class="grid gap-5 sm:grid-cols-2">
+                <li class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold">1) Diagnose the bottleneck</p>
+                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200/90">Days 1–3</span>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    We review the full path (ad → page → follow-up) and rank fixes by impact. No fluff deliverables.
+                  </p>
+                  <p class="mt-4 text-xs text-slate-300/80">
+                    Microcopy: You’ll see the exact priority list before we build anything.
+                  </p>
+                </li>
+
+                <li class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold">2) Clean measurement</p>
+                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200/90">Days 2–7</span>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    Confirm events, conversion mapping, UTMs, and lead quality signals—so you’re not optimizing blind.
+                  </p>
+                  <p class="mt-4 text-xs text-slate-300/80">
+                    Microcopy: If tracking is broken, we fix that first.
+                  </p>
+                </li>
+
+                <li class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold">3) Ship tests fast</p>
+                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200/90">Weeks 2–3</span>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    New ads and landing page variants aimed at a single thing: higher conversion with stable cost.
+                  </p>
+                  <p class="mt-4 text-xs text-slate-300/80">
+                    Microcopy: Every test has a hypothesis and a decision rule.
+                  </p>
+                </li>
+
+                <li class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold">4) Scale what wins</p>
+                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200/90">Week 4+</span>
+                  </div>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    Increase spend only when the funnel holds. Keep creative fresh. Keep the page honest and clear.
+                  </p>
+                  <p class="mt-4 text-xs text-slate-300/80">
+                    Microcopy: “More budget” is a result, not a strategy.
+                  </p>
+                </li>
+              </ol>
             </div>
           </div>
         </div>
-      </footer>
-    </div>
-  </main>
+      </section>
 
-  <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+      <!-- 6) Case studies -->
+      <section id="cases">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h2 class="text-3xl font-semibold tracking-tight text-white">Case studies (Example)</h2>
+              <p class="mt-3 max-w-2xl text-sm text-slate-200/80">
+                These are placeholders to show format. Swap in real numbers and screenshots when ready.
+              </p>
+            </div>
+            <a href="#contact" class="focus-ring inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
+              Contact us
+            </a>
+          </div>
 
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        const open = mobileMenu.classList.toggle('open');
-        menuBtn.setAttribute('aria-expanded', String(open));
-      });
+          <div class="mt-10 grid gap-6 lg:grid-cols-2">
+            <!-- Case 1 -->
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p class="text-xs font-semibold tracking-wide text-emerald-200">EXAMPLE</p>
+                  <h3 class="mt-1 text-xl font-semibold">Home services lead gen</h3>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    Rebuilt landing page for message match + fixed lead tracking. Tightened Google Ads queries and negatives.
+                  </p>
+                </div>
+                <div class="shrink-0 rounded-2xl border border-white/10 bg-slate-950/40 p-4 text-center">
+                  <p class="text-xs text-slate-300/80">Timeframe</p>
+                  <p class="mt-1 text-sm font-semibold">30 days</p>
+                </div>
+              </div>
 
-      // Close menu on click
-      mobileMenu.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          mobileMenu.classList.remove('open');
-          menuBtn.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
+              <div class="mt-6 grid gap-4 sm:grid-cols-3">
+                <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p class="text-xs text-slate-300/80">Before</p>
+                  <p class="mt-2 text-lg font-semibold">$68 CPL</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p class="text-xs text-slate-300/80">After</p>
+                  <p class="mt-2 text-lg font-semibold">$44 CPL</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p class="text-xs text-slate-300/80">Change</p>
+                  <p class="mt-2 text-lg font-semibold text-emerald-200">↓ 35%</p>
+                </div>
+              </div>
 
-    // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+              <div class="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-sm font-semibold">What changed</p>
+                <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> New “same-week availability” offer placement above the fold</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Lead form simplified + stronger proof near CTA</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Query cleanup reduced junk clicks</li>
+                </ul>
+              </div>
+            </article>
 
-    // Optional: nicer mailto content from the form (works best when using the buttons below too)
-    const leadForm = document.getElementById('leadForm');
-    leadForm.addEventListener('submit', function () {
-      // If you want to switch to a real form endpoint later, replace the form action with your URL.
-    });
-  </script>
-</body>
+            <!-- Case 2 -->
+            <article class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+              <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p class="text-xs font-semibold tracking-wide text-emerald-200">EXAMPLE</p>
+                  <h3 class="mt-1 text-xl font-semibold">Ecommerce: paid social + CRO</h3>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    New creative angles + a product landing page focused on clarity, proof, and faster checkout.
+                  </p>
+                </div>
+                <div class="shrink-0 rounded-2xl border border-white/10 bg-slate-950/40 p-4 text-center">
+                  <p class="text-xs text-slate-300/80">Timeframe</p>
+                  <p class="mt-1 text-sm font-semibold">45 days</p>
+                </div>
+              </div>
+
+              <div class="mt-6 grid gap-4 sm:grid-cols-3">
+                <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p class="text-xs text-slate-300/80">Before</p>
+                  <p class="mt-2 text-lg font-semibold">2.1% CVR</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p class="text-xs text-slate-300/80">After</p>
+                  <p class="mt-2 text-lg font-semibold">3.6% CVR</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p class="text-xs text-slate-300/80">Change</p>
+                  <p class="mt-2 text-lg font-semibold text-emerald-200">↑ 71%</p>
+                </div>
+              </div>
+
+              <div class="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-sm font-semibold">What changed</p>
+                <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Creative focused on “why this vs alternatives”</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Proof stacked near price (reviews + guarantees)</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Reduced friction: clearer shipping/returns</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <div class="mt-10 grid gap-4 lg:grid-cols-12">
+            <div class="lg:col-span-8 rounded-3xl border border-white/10 bg-white/5 p-6">
+              <h3 class="text-lg font-semibold">How we present results</h3>
+              <p class="mt-2 text-sm text-slate-200/80">
+                Not a wall of charts. You get a quick readout: what shipped, what moved, what didn’t, and the next tests. If there’s uncertainty, we call it out.
+              </p>
+            </div>
+            <div class="lg:col-span-4 rounded-3xl border border-white/10 bg-gradient-to-br from-sky-400/10 to-indigo-500/10 p-6">
+              <p class="text-sm font-semibold">Want a teardown?</p>
+              <p class="mt-2 text-sm text-slate-200/80">
+                Send your site + ad spend range. We’ll reply with 3 fixes we’d prioritize first.
+              </p>
+              <a href="#contact" class="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100">
+                Contact us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7) FAQ -->
+      <section id="faq" class="border-y border-white/10 bg-white/[0.02]">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <h2 class="text-3xl font-semibold tracking-tight text-white">FAQ</h2>
+            <p class="mt-3 text-sm text-slate-200/80">
+              The questions people ask before they hire us—answered plainly.
+            </p>
+          </div>
+
+          <div class="mt-10 grid gap-5 lg:grid-cols-2">
+            <!-- FAQ item -->
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                How quickly will we see results?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                Expect early signal in 2–3 weeks once tracking is clean and tests are live. Durable improvements usually come from iteration (weeks 4+), not one “big change.”
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                Do you require long contracts?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                No. We prefer earning trust through outcomes and clarity. Most clients start with 30–60 days to establish a baseline and a testing rhythm.
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                What if our tracking is a mess?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                That’s common. We start with a measurement sanity check: conversion events, UTMs, lead quality signals, and what your team actually needs to make decisions.
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                Who will I talk to each week?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                You’ll work directly with the people doing the work—strategy, build, optimization. No handoffs to junior teams after the sale.
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                Can you work with our existing creatives or dev team?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                Yes. We can plug into your current setup and add structure: test plans, briefs, landing page requirements, and decision rules so work stays aligned.
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                What makes you different from other agencies?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                We don’t separate “ads” from “conversion.” If your page is weak, we fix it. If your offer is unclear, we tighten it. And we document decisions so you always know why.
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                Do you guarantee results?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                We won’t promise numbers we can’t control. We do promise a disciplined process: clear priorities, fast shipping, honest readouts, and a test log you can audit.
+              </div>
+            </details>
+
+            <details class="group rounded-3xl border border-white/10 bg-white/5 p-6">
+              <summary class="focus-ring cursor-pointer list-none text-sm font-semibold">
+                What do you need from us to start?
+                <span class="float-right ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-slate-200/90 group-open:rotate-45 transition" aria-hidden="true">+</span>
+              </summary>
+              <div class="mt-3 text-sm text-slate-200/80">
+                Access to ad accounts, analytics, and your current landing pages. If you have call recordings, customer reviews, or sales notes—those are gold.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8) Final CTA banner -->
+      <section class="py-16">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-sky-400/15 via-indigo-500/10 to-fuchsia-500/10 p-8 shadow-glow">
+            <div class="absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_20%,rgba(56,189,248,0.18),transparent_55%),radial-gradient(900px_circle_at_70%_60%,rgba(139,92,246,0.16),transparent_55%)]"></div>
+            <div class="relative grid gap-6 lg:grid-cols-12 lg:items-center">
+              <div class="lg:col-span-8">
+                <h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                  If you’re paying for clicks, your landing page shouldn’t be an afterthought.
+                </h2>
+                <p class="mt-2 text-sm text-slate-200/90">
+                  Contact us and we’ll reply with a short, specific plan—what we’d fix first and what we’d test next.
+                </p>
+              </div>
+              <div class="lg:col-span-4">
+                <a href="#contact" class="focus-ring inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 shadow-soft hover:bg-slate-100">
+                  Contact us
+                </a>
+                <p class="mt-2 text-center text-xs text-slate-200/80">No pressure. Clear next steps.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9) Contact section -->
+      <section id="contact" class="border-t border-white/10 bg-slate-950">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
+            <div class="lg:col-span-6">
+              <h2 class="text-3xl font-semibold tracking-tight text-white">Contact</h2>
+              <p class="mt-3 text-sm text-slate-200/80">
+                The fastest way to start is email. Tell us what you sell, your rough monthly ad spend, and what “better” looks like (lower CPL, higher CVR, more qualified leads, etc.).
+              </p>
+
+              <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 p-6">
+                <p class="text-sm font-semibold text-white">Email</p>
+                <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <a
+                    id="emailLink"
+                    class="focus-ring inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-950/60"
+                    href="mailto:parkplacestudios@gmail.com"
+                  >
+                    <svg aria-hidden="true" class="h-5 w-5 text-sky-200" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 6h16v12H4V6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="emailText">parkplacestudios@gmail.com</span>
+                  </a>
+
+                  <button
+                    id="copyBtn"
+                    type="button"
+                    class="focus-ring inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-soft hover:bg-slate-100"
+                  >
+                    Copy email
+                  </button>
+                </div>
+                <p id="copyStatus" class="mt-2 text-xs text-slate-300/80" aria-live="polite"></p>
+              </div>
+
+              <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+                  <p class="text-sm font-semibold">Phone (optional)</p>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    (###) ###-####<br />
+                    <span class="text-xs text-slate-300/80">Placeholder — add your number when ready.</span>
+                  </p>
+                </div>
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+                  <p class="text-sm font-semibold">Office hours</p>
+                  <p class="mt-2 text-sm text-slate-200/80">
+                    Mon–Fri, 9am–5pm<br />
+                    <span class="text-xs text-slate-300/80">Placeholder — adjust as needed.</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-6 rounded-3xl border border-white/10 bg-slate-950/40 p-6">
+                <p class="text-sm font-semibold">What to include in your message</p>
+                <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Website URL</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Current monthly ad spend range (even rough)</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Your primary goal (CPL, CVR, ROAS, lead quality)</li>
+                  <li class="flex gap-2"><span class="text-emerald-200">•</span> Any constraints (seasonality, margins, capacity)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.02] p-6 shadow-soft">
+                <h3 class="text-xl font-semibold">A quick note on fit</h3>
+                <p class="mt-2 text-sm text-slate-200/80">
+                  We do our best work when we can test and iterate quickly. If approvals take weeks, performance will stall.
+                </p>
+
+                <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                    <p class="text-sm font-semibold">Great fit</p>
+                    <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+                      <li class="flex gap-2"><span class="text-emerald-200">•</span> You can ship weekly changes</li>
+                      <li class="flex gap-2"><span class="text-emerald-200">•</span> You care about lead quality</li>
+                      <li class="flex gap-2"><span class="text-emerald-200">•</span> You want decisions documented</li>
+                    </ul>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                    <p class="text-sm font-semibold">Not ideal</p>
+                    <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+                      <li class="flex gap-2"><span class="text-amber-200">•</span> “Just run ads” requests</li>
+                      <li class="flex gap-2"><span class="text-amber-200">•</span> No access to conversion data</li>
+                      <li class="flex gap-2"><span class="text-amber-200">•</span> Testing is off-limits</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-sm font-semibold">What happens after you contact us</p>
+                  <ol class="mt-3 space-y-2 text-sm text-slate-200/90">
+                    <li class="flex gap-2"><span class="text-sky-200">1.</span> We reply with a short intake checklist</li>
+                    <li class="flex gap-2"><span class="text-sky-200">2.</span> You share access (or screenshots if preferred)</li>
+                    <li class="flex gap-2"><span class="text-sky-200">3.</span> We send a clear plan + scope options</li>
+                  </ol>
+                </div>
+
+                <div class="mt-6">
+                  <a href="mailto:parkplacestudios@gmail.com" class="focus-ring inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 shadow-soft hover:bg-slate-100">
+                    Email us now
+                  </a>
+                  <p class="mt-2 text-center text-xs text-slate-300/80">Email: <a class="underline underline-offset-4 hover:text-white" href="mailto:parkplacestudios@gmail.com">parkplacestudios@gmail.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 10) Footer -->
+    <footer class="border-t border-white/10 bg-slate-950">
+      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/90 to-indigo-500/90 shadow-soft">
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 text-slate-950">
+                <path fill="currentColor" d="M12 2l9 5v10l-9 5-9-5V7l9-5zm0 2.3L5 7.9v8.2l7 3.6 7-3.6V7.9l-7-3.6z"/>
+              </svg>
+            </span>
+            <div class="leading-tight">
+              <p class="text-sm font-semibold">Park Place Studios</p>
+              <p class="text-xs text-slate-300/80">
+                Email: <a class="underline underline-offset-4 hover:text-white" href="mailto:parkplacestudios@gmail.com">parkplacestudios@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 text-sm text-slate-200/80">
+            <a class="focus-ring rounded-lg px-2 py-1 hover:bg-white/5 hover:text-white" href="#services">Services</a>
+            <a class="focus-ring rounded-lg px-2 py-1 hover:bg-white/5 hover:text-white" href="#process">Process</a>
+            <a class="focus-ring rounded-lg px-2 py-1 hover:bg-white/5 hover:text-white" href="#cases">Case studies</a>
+            <a class="focus-ring rounded-lg px-2 py-1 hover:bg-white/5 hover:text-white" href="#faq">FAQ</a>
+            <a class="focus-ring rounded-lg px-2 py-1 hover:bg-white/5 hover:text-white" href="#contact">Contact us</a>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-slate-300/80 sm:flex-row sm:items-center sm:justify-between">
+          <p>© <span id="year"></span> Park Place Studios. All rights reserved.</p>
+          <p>Built for speed, clarity, and measurable decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Minimal JS: mobile menu toggle + copy email + year
+      (function () {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        if (menuBtn && mobileMenu) {
+          menuBtn.addEventListener("click", () => {
+            const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+            menuBtn.setAttribute("aria-expanded", String(!isOpen));
+            mobileMenu.classList.toggle("hidden");
+          });
+
+          // Close menu on link click
+          mobileMenu.addEventListener("click", (e) => {
+            const target = e.target;
+            if (target && target.tagName === "A") {
+              menuBtn.setAttribute("aria-expanded", "false");
+              mobileMenu.classList.add("hidden");
+            }
+          });
+        }
+
+        // Copy email micro-interaction
+        const copyBtn = document.getElementById("copyBtn");
+        const emailText = document.getElementById("emailText");
+        const status = document.getElementById("copyStatus");
+
+        async function copyEmail() {
+          const email = (emailText?.textContent || "").trim();
+          if (!email) return;
+
+          try {
+            await navigator.clipboard.writeText(email);
+            if (status) status.textContent = "Copied to clipboard.";
+            if (copyBtn) copyBtn.textContent = "Copied!";
+            setTimeout(() => {
+              if (copyBtn) copyBtn.textContent = "Copy email";
+              if (status) status.textContent = "";
+            }, 1800);
+          } catch (err) {
+            // Fallback for older browsers
+            const ta = document.createElement("textarea");
+            ta.value = email;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "absolute";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand("copy");
+              if (status) status.textContent = "Copied to clipboard.";
+              if (copyBtn) copyBtn.textContent = "Copied!";
+              setTimeout(() => {
+                if (copyBtn) copyBtn.textContent = "Copy email";
+                if (status) status.textContent = "";
+              }, 1800);
+            } catch (e) {
+              if (status) status.textContent = "Copy failed. You can manually copy the email above.";
+            } finally {
+              document.body.removeChild(ta);
+            }
+          }
+        }
+
+        if (copyBtn) copyBtn.addEventListener("click", copyEmail);
+
+        // Current year
+        const year = document.getElementById("year");
+        if (year) year.textContent = String(new Date().getFullYear());
+      })();
+    </script>
+  </body>
 </html>
+```
